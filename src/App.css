@@ -36,3 +36,8 @@
 .App-list ul li {
   list-style-type: none;
 }
+
+.App-add-from {
+    text-align: left;
+    margin: 50px;
+}

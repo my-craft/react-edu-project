@@ -4,11 +4,13 @@ const initialState = {
     todoList: [
                     {
                         id: 1,
-                        name: 'First task'
+                        name: 'First task',
+                        done: false
                     },
                     {
                         id: 2,
-                        name: 'Second task'
+                        name: 'Second task',
+                        done: false
                     }
                 ]
 };
@@ -16,8 +18,17 @@ const initialState = {
 function rootReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_ITEM:
+            let newItem = action.payload;
+            // вычислить новый id, если не задан
+            // как максимальный +1
+            if (!newItem.id) {
+                newItem.id = Math.max(...state.todoList.map(obj => obj.id), 0) + 1;
+            }
+
+            newItem.done = false;
+
             return Object.assign({}, state, {
-                todoList: state.todoList.concat(action.payload)
+                todoList: state.todoList.concat(newItem)
             });
         default:
             break;

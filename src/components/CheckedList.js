@@ -1,7 +1,7 @@
 import React from "react";
-import CheckedListItem from './CheckedListItem';
+import CheckedListItem from "./CheckedListItem";
 
-function CheckedList(props) {
+const CheckedList = (props) => {
     let { list } = props;
     return (
                 list
@@ -16,6 +16,6 @@ function CheckedList(props) {
                 </div>
                 : null
             );
-}
+};
 
 export default CheckedList;
