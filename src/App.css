@@ -29,7 +29,7 @@
   }
 }
 
-.App-list ul {
+.App-content {
   text-align: left;
 }
 
@@ -38,6 +38,18 @@
 }
 
 .App-add-from {
-    text-align: left;
     margin: 50px;
+}
+
+.App-done-task {
+    text-decoration: line-through;
+}
+
+.App-tasks-state {
+    color: red;
+    margin-left: 50px;
+}
+
+.App-done-all {
+    color: green;
 }

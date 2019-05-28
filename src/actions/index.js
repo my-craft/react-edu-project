@@ -1,8 +1,15 @@
-import { ADD_ITEM } from "../constants/action-types";
+import { ADD_ITEM, SET_ITEM_STATE } from "../constants/action-types";
 
 export function addItem(payload) {
     return {
         type: ADD_ITEM,
+        payload
+    }
+};
+
+export function setItemState(payload) {
+    return {
+        type: SET_ITEM_STATE,
         payload
     }
 };
