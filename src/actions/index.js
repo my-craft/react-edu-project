@@ -5,11 +5,11 @@ export function addItem(payload) {
         type: ADD_ITEM,
         payload
     }
-};
+}
 
 export function setItemState(payload) {
     return {
         type: SET_ITEM_STATE,
         payload
     }
-};
+}

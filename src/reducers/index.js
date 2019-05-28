@@ -1,4 +1,4 @@
-import { ADD_ITEM, SET_ITEM_STATE } from "../constants/action-types";
+import { ADD_ITEM, SET_ITEM_STATE, BAD_NAME } from "../constants/action-types";
 
 const initialState = {
     todoList: [
@@ -12,7 +12,8 @@ const initialState = {
                         name: 'Second task',
                         done: false
                     }
-                ]
+                ],
+    isBadNameError: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -28,7 +29,8 @@ function rootReducer(state = initialState, action) {
             newItem.done = false;
 
             return Object.assign({}, state, {
-                todoList: state.todoList.concat(newItem)
+                todoList: state.todoList.concat(newItem),
+                isBadNameError: false
             });
 
         case SET_ITEM_STATE:
@@ -48,6 +50,9 @@ function rootReducer(state = initialState, action) {
             }
 
             break;
+
+        case BAD_NAME:
+            return Object.assign({}, state, { isBadNameError: true });
 
         default:
             break;

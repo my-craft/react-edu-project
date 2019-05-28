@@ -15,11 +15,12 @@ const mapStateToProps = (state) => {
     return {
         todoList: state.todoList,
         todoCount: todoCount,
-        allCount: allCount
+        allCount: allCount,
+        isBadNameError: state.isBadNameError
     };
 };
 
-const ConnectApp = ({ todoList, todoCount, allCount }) => {
+const ConnectApp = ({ todoList, todoCount, allCount, isBadNameError }) => {
     return (
         <div className="App">
             <header className="App-header">
@@ -29,6 +30,9 @@ const ConnectApp = ({ todoList, todoCount, allCount }) => {
             </header>
             <div className="App-content">
                 <Form />
+                {
+                    isBadNameError ? <p className="App-tasks-error">Название задачи не может быть пустым</p> : ''
+                }
                 <ListState todo={ todoCount } all={ allCount } />
                 <CheckedList list={ todoList }/>
             </div>
