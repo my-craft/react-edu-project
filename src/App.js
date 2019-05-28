@@ -1,35 +1,33 @@
 import React, {Component} from 'react';
 import './App.css';
 import CheckedList from "./CheckedList";
+import store from './store';
+import { addItem } from "./actions";
 
-class App extends Component {
-    state = {
-        todoList: [
-                    {
-                        id: 1,
-                        name: 'First task'
-                    },
-                    {
-                        id: 2,
-                        name: 'Second task'
-                    }
-                ]
-    };
+function App() {
+    let { todoList } = store.getState();
 
-    render() {
-        let { todoList } = this.state;
+    store.subscribe(() => console.log('Look ma, Redux!!'));
 
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <p>
-                    TODO list
-                    </p>
-                </header>
-                <CheckedList list={ todoList }/>
-            </div>
-        );
-    }
+    let newTask = {
+                        id: 3,
+                        name: 'Third task so far'
+                    };
+
+    store.dispatch(addItem(newTask));
+
+    ({ todoList } = store.getState());
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <p>
+                TODO list
+                </p>
+            </header>
+            <CheckedList list={ todoList }/>
+        </div>
+    );
 }
 
 export default App;
