@@ -30,7 +30,7 @@ const actions = {
 		return {
 			...state,
 			...{
-				todoList: [...state.todoList, ...newItem],
+				todoList: [...state.todoList, newItem],
 				isBadNameError: false
 			}
 		};
