@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./ListState.module.css";
 
 const ListState = ({ todo, all }) => {
-  let className = styles["App-tasks-state"];
+  let className = styles["tasks-state"];
   if (todo < 1) {
-    className += " " + styles["App-done-all"];
+    className += " " + styles["done-all"];
   }
 
   return (

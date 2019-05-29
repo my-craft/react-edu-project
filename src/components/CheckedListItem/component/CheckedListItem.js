@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./CheckedListItem.module.css";
+import moment from "moment";
 
 class CheckedListItem extends Component {
 
@@ -28,13 +29,13 @@ class CheckedListItem extends Component {
 	render() {
 		const { item } = this.state;
 
-		const labelClass = item.done ? styles["App-done-task"] : "";
-
 		return (
-			<li>
-				<input type="checkbox" defaultChecked={ item.done } onChange={ this.onChangeHandler } />
-				<label className={ labelClass }>{ item.name }</label>
-			</li>
+			<tr className={ item.done ? styles["done-task"] : "" }>
+				<td><input type="checkbox" defaultChecked={ item.done } onChange={ this.onChangeHandler } /></td>
+        <td>{ item.name }</td>
+        <td>{ item.description }</td>
+        <td>{ moment(item.date).format("DD.MM в HH:mm") }</td>
+			</tr>
 		);
 	}
 }

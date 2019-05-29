@@ -1,4 +1,4 @@
-.App-header {
+.header {
   text-align: center;
   background-color: #282c34;
   display: flex;
@@ -7,10 +7,10 @@
   color: white;
 }
 
-.App-content {
+.content {
 }
 
-.App-tasks-error {
+.tasks-error {
   color: red;
   font-weight: bold;
   margin-left: 50px;

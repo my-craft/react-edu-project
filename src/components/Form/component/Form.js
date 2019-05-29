@@ -2,37 +2,73 @@ import React, { Component } from "react";
 import styles from "./Form.module.css";
 
 class Form extends Component {
-	state = {
-		name: ""
-	};
+  state = {
+    name: "",
+    description: "",
+    isOpened: false
+  };
 
-	onChangeHandler = (e) => {
-		this.setState({ name: e.target.value });
-	};
+  onChangeName = (e) => {
+    this.setState({ name: e.target.value });
+  };
 
-	onSubmitHandler = (e) => {
-		e.preventDefault();
+  onChangeDescription = (e) => {
+    this.setState({ description: e.target.value });
+  };
 
-		const { name } = this.state;
-		this.props.addItem({ name });
+  onSubmitForm = (e) => {
+    e.preventDefault();
 
-		this.setState({
-			name: ""
-		});
-	};
+    const { name, description } = this.state;
+    this.props.addItem({ name, description });
 
-	render() {
-		const { name } = this.state;
+    this.setState({
+      name: "",
+      description: ""
+    });
+  };
 
-		return (
-			<div className={ styles["App-add-from"] }>
-				<form onSubmit={ this.onSubmitHandler }>
-					<input type="text" name="name" value={ name } onChange={ this.onChangeHandler } />
-					<input type="submit" value="Добавить" />
-				</form>
-			</div>
-		);
-	}
+  onShowFormClick = (e) => {
+    this.setState({ isOpened: true });
+  };
+
+  onHideFormClick = (e) => {
+    this.setState({ isOpened: false });
+  };
+
+  render() {
+    const { name, description, isOpened } = this.state;
+
+    return (
+      <div className={ styles.from }>
+        <div>
+          {
+            !isOpened &&
+            <button onClick={ this.onShowFormClick }>Добавить задачу</button>
+          }
+          {
+            isOpened &&
+            <button onClick={ this.onHideFormClick }>Скрыть форму</button>
+          }
+        </div>
+        <div className={ (!isOpened ? styles.hide : styles.show) }>
+          <form onSubmit={ this.onSubmitForm }>
+            <div className={ styles.row }>
+              <label>Название: </label>
+              <input type="text" name="name" value={ name } onChange={ this.onChangeName } />
+            </div>
+            <div className={ styles.row }>
+              <label>Описание: </label>
+              <textarea name="description" value={ description } onChange={ this.onChangeDescription } />
+            </div>
+            <div className={ styles.row }>
+              <input type="submit" value="Добавить" />
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Form;

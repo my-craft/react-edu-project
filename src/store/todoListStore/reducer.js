@@ -1,15 +1,20 @@
 import { ADD_ITEM, SET_ITEM_STATE, FROM_ERROR } from "./constant";
+import moment from "moment";
 
 const initialState = {
 	todoList: [
 		{
 			id: 1,
-			name: 'First task',
+			name: "First task",
+			description: "Some text",
+      date: "2019-05-28 16:05",
 			done: false
 		},
 		{
 			id: 2,
-			name: 'Second task',
+			name: "Second task",
+			description: "",
+      date: "2019-05-28 17:20",
 			done: false
 		}
 	],
@@ -22,7 +27,6 @@ const actions = {
 
 		if (payload.name.length < 1) {
 			error = "Не введено название задачи";
-
 		}
 
 		if (error.length > 0) {
@@ -32,14 +36,19 @@ const actions = {
 			};
 		}
 
-		let newItem = payload;
+		let newItem = {
+			id: 0,
+			name: payload.name,
+			description: payload.description ? payload.description : "",
+      date: moment().format("YYYY-MM-DD HH:mm"),
+			done: false
+		};
+
 		// вычислить новый id, если не задан
 		// как максимальный +1
 		if (!newItem.id) {
 			newItem.id = Math.max(...state.todoList.map(obj => obj.id), 0) + 1;
 		}
-
-		newItem.done = false;
 
 		return {
 			...state,

@@ -1,3 +1,19 @@
-.App-add-from {
+.from {
   margin: 50px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  margin-top: 10px;
+}
+
+.row {
+  margin-top: 5px;
+}
+
+.row label, .row input {
+  display:block;
 }
