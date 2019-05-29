@@ -1,15 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addItem } from "../../../store/todoListStore/action";
-import styles from "./App.module.css";
+import styles from "./Form.module.css";
 
-function mapDispatchToProps(dispatch) {
-	return {
-		addItem: item => dispatch(addItem(item))
-	};
-}
-
-class ConnectedForm extends Component {
+class Form extends Component {
 	state = {
 		name: ""
 	};
@@ -42,7 +34,5 @@ class ConnectedForm extends Component {
 		);
 	}
 }
-
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
 
 export default Form;

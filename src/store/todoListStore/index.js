@@ -1,10 +1,8 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore } from "redux";
 import todoReducer from "./reducer";
-import { taskFormValidation } from "./middleware";
 
 const todoListStore = createStore(
-  todoReducer,
-  applyMiddleware(taskFormValidation)
+  todoReducer
 );
 
 export default todoListStore;

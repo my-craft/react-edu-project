@@ -33,27 +33,6 @@
   text-align: left;
 }
 
-.App-list ul li {
-  list-style-type: none;
-}
-
-.App-add-from {
-  margin: 50px;
-}
-
-.App-done-task {
-  text-decoration: line-through;
-}
-
-.App-tasks-state {
-  color: red;
-  margin-left: 50px;
-}
-
-.App-done-all {
-  color: green;
-}
-
 .App-tasks-error {
   color: red;
   font-weight: bold;

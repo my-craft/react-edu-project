@@ -1,15 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { setItemState } from "../../../store/todoListStore/action";
-import styles from "./App.module.css";
+import styles from "./CheckedListItem.module.css";
 
-function mapDispatchToProps(dispatch) {
-	return {
-		setItemState: item => dispatch(setItemState(item))
-	};
-}
-
-class ConnectCheckedListItem extends Component {
+class CheckedListItem extends Component {
 
 	constructor(props) {
 		super(props);
@@ -46,7 +38,5 @@ class ConnectCheckedListItem extends Component {
 		);
 	}
 }
-
-const CheckedListItem = connect(null, mapDispatchToProps)(ConnectCheckedListItem);
 
 export default CheckedListItem;

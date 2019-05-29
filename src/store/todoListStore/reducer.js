@@ -13,11 +13,25 @@ const initialState = {
 			done: false
 		}
 	],
-	isBadNameError: false
+	error: ""
 };
 
 const actions = {
 	[ADD_ITEM]: (state, payload) => {
+		let error = "";
+
+		if (payload.name.length < 1) {
+			error = "Не введено название задачи";
+
+		}
+
+		if (error.length > 0) {
+			return {
+				...state,
+				error
+			};
+		}
+
 		let newItem = payload;
 		// вычислить новый id, если не задан
 		// как максимальный +1
@@ -31,7 +45,7 @@ const actions = {
 			...state,
 			...{
 				todoList: [...state.todoList, newItem],
-				isBadNameError: false
+				error: ""
 			}
 		};
 	},

@@ -1,6 +1,6 @@
 import React from "react";
-import CheckedListItem from "./CheckedListItem";
-import styles from "./App.module.css";
+import CheckedListItem from "../../CheckedListItem";
+import styles from "./CheckedList.module.css";
 
 const CheckedList = ({ list }) => {
 	return (
