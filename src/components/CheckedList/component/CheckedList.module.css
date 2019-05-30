@@ -2,12 +2,20 @@
   list-style-type: none;
 }
 
-.task-table {
+.taskTable {
   border-collapse: collapse;
   margin-left: 50px;
 }
 
-.task-table th, .task-table td {
+.taskTable th, .taskTable td {
   border: 1px solid black;
   padding: 10px;
+}
+
+.filter {
+  margin: 0px 0px 20px 50px;
+}
+
+.selectLabel {
+  display: block;
 }

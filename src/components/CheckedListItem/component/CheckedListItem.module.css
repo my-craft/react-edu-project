@@ -1,7 +1,7 @@
-.done-task {
+.doneTask {
   text-decoration: line-through;
 }
 
-tr.done-task {
+tr.doneTask {
   background-color: rgba(0, 128, 0, 0.3);
 }

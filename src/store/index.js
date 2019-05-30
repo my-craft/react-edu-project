@@ -1,5 +1,11 @@
-import todoListStore from "./todoListStore";
-import { addItem, setItemState } from "./todoListStore/action";
+import todoReducer from "./todoList";
+import {addItem, setItemState} from "./todoList/action";
+import {createStore} from "redux";
 
-export default todoListStore;
-export { addItem, setItemState };
+const todoList = createStore(
+  todoReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+export default todoList;
+export {addItem, setItemState};

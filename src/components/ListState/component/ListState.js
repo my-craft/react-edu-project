@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "./ListState.module.css";
 
-const ListState = ({ todo, all }) => {
-  let className = styles["tasks-state"];
-  if (todo < 1) {
-    className += " " + styles["done-all"];
-  }
+const ListState = ({todo, all}) => {
+  const className = styles.tasksState + ((todo < 1) ? " " + styles.doneAll : "");
 
   return (
-    <div className={ className }>
-      <p>Осталось задач: { todo } из { all }</p>
+    <div className={className}>
+      <p>Осталось задач: {todo} из {all}</p>
     </div>
   );
 };
