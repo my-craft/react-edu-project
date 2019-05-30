@@ -3,6 +3,10 @@ import CheckedListItem from "components/CheckedListItem";
 import styles from "./CheckedList.module.css";
 
 const CheckedList = ({list}) => {
+  if (!list) {
+    return (<></>);
+  }
+
   // сделанные задачи должны быть внизу таблицы
   // между собой задачи с разными статусами отсортированы по дате - сначала новые
   list.sort((a, b) => {
@@ -16,10 +20,6 @@ const CheckedList = ({list}) => {
 
     return b.date.localeCompare(a.date);
   });
-
-  if (!list) {
-    return (<></>);
-  }
 
   return (
     <div className={styles.list}>

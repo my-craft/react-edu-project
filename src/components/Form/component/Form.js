@@ -40,7 +40,7 @@ class Form extends Component {
     const {name, description, isOpened} = this.state;
 
     return (
-      <div className={styles.from}>
+      <div className={styles.form}>
         <div>
           {isOpened ? <button onClick={this.onHideFormClick}>Скрыть форму</button> : <button onClick={this.onShowFormClick}>Добавить задачу</button>}
         </div>
