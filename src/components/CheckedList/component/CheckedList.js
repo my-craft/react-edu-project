@@ -4,8 +4,19 @@ import styles from "./CheckedList.module.css";
 
 const CheckedList = ({ list }) => {
 	let sortedList = list;
+
+	// сделанные задачи должны быть внизу таблицы
+  // между собой задачи с разными статусами отсортированы по дате - сначала новые
 	sortedList.sort((a, b) => {
-		return ((!a.done && b.done) || !b.date.localeCompare(a.date)) ? -1 : 1;
+	  if (!a.done && b.done) {
+      return -1;
+    }
+
+    if (a.done && !b.done) {
+      return 1;
+    }
+
+    return b.date.localeCompare(a.date);
   });
 
 	return (

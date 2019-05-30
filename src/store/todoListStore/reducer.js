@@ -69,6 +69,8 @@ const actions = {
 				if (item.id === id) {
 					item.done = done;
 				}
+
+				return item;
 			});
 
 			return { ...state, todoList };
