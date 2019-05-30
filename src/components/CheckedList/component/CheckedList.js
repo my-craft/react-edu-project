@@ -1,5 +1,6 @@
 import React from "react";
 import CheckedListItem from "components/CheckedListItem";
+import Filter from "components/Filter";
 import styles from "./CheckedList.module.css";
 
 const CheckedList = ({list}) => {
@@ -23,22 +24,7 @@ const CheckedList = ({list}) => {
 
   return (
     <div className={styles.list}>
-      <div className={styles.filter}>
-        <div>
-          <label className={styles.selectLabel}>Сортировать задачи</label>
-          <select>
-            <option>По умолчанию</option>
-            <option>Сначала новые</option>
-            <option>Сначала старые</option>
-          </select>
-        </div>
-        <div>
-          <input type="checkbox" /><label>Сделанные</label>
-        </div>
-        <div>
-          <input type="checkbox" /><label>Не сделанные</label>
-        </div>
-      </div>
+      <Filter />
       <table className={styles.taskTable}>
         <tbody>
         <tr>

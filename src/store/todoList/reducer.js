@@ -1,4 +1,4 @@
-import {ADD_ITEM, SET_ITEM_STATE} from "./constant";
+import {ADD_ITEM, SET_ITEM_STATE, SET_SORT, SET_FILTERS, SORT_DEFAULT, FILTER_TODO, FILTER_DONE} from "./constant";
 import moment from "moment";
 
 const initialState = {
@@ -19,7 +19,12 @@ const initialState = {
     }
   ],
   nextId: 3,
-  error: null
+  error: null,
+  sort: SORT_DEFAULT,
+  filters: {
+    [FILTER_TODO]: false,
+    [FILTER_DONE]: false
+  }
 };
 
 const getAddError = (payload) => {
@@ -58,23 +63,31 @@ const actions = {
   },
 
   [SET_ITEM_STATE]: (state, payload) => {
-    if (payload.id) {
-      const {id, done} = payload;
-
-      const {todoList} = state;
-
-      todoList.map((item) => {
-        if (item.id === id) {
-          item.done = done;
-        }
-
-        return item;
-      });
-
-      return {...state, todoList};
+    if (!payload.id) {
+      return state;
     }
 
-    return state;
+    const {id, done} = payload;
+
+    const {todoList} = state;
+
+    todoList.map((item) => {
+      if (item.id === id) {
+        item.done = done;
+      }
+
+      return item;
+    });
+
+    return {...state, todoList};
+  },
+
+  [SET_SORT]: (state, payload) => {
+
+  },
+
+  [SET_FILTERS]: (state, payload) => {
+
   }
 };
 

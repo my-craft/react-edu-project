@@ -1,5 +1,5 @@
 import todoReducer from "./todoList";
-import {addItem, setItemState} from "./todoList/action";
+import {addItem, setItemState, setSort, setFilters} from "./todoList/action";
 import {createStore} from "redux";
 
 const todoList = createStore(
@@ -8,4 +8,4 @@ const todoList = createStore(
 );
 
 export default todoList;
-export {addItem, setItemState};
+export {addItem, setItemState, setSort, setFilters};
