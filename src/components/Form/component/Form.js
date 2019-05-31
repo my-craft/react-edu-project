@@ -1,12 +1,16 @@
 import React, {Component} from "react";
 import styles from "./Form.module.css";
+import Error from "components/Error";
 
 class Form extends Component {
-  state = {
-    name: "",
-    description: "",
-    isOpened: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      description: ""
+    };
+  }
 
   onChangeName = (e) => {
     this.setState({name: e.target.value});
@@ -28,38 +32,31 @@ class Form extends Component {
     });
   };
 
-  onShowFormClick = (e) => {
-    this.setState({isOpened: true});
-  };
-
-  onHideFormClick = (e) => {
-    this.setState({isOpened: false});
-  };
-
   render() {
-    const {name, description, isOpened} = this.state;
+    const {name, description} = this.state;
+    const {isOpened, error} = this.props;
 
     return (
-      <div className={styles.form}>
-        <div>
-          {isOpened ? <button onClick={this.onHideFormClick}>Скрыть форму</button> : <button onClick={this.onShowFormClick}>Добавить задачу</button>}
+      <>
+        <div className={styles.form}>
+          <div className={(!isOpened ? styles.hide : styles.show)}>
+            <form onSubmit={this.onSubmitForm}>
+              <div className={styles.row}>
+                <label>Название: </label>
+                <input type="text" name="name" value={name} onChange={this.onChangeName} />
+              </div>
+              <div className={styles.row}>
+                <label>Описание: </label>
+                <textarea name="description" value={description} onChange={this.onChangeDescription} />
+              </div>
+              <div className={styles.row}>
+                <input type="submit" value="Добавить" />
+              </div>
+            </form>
+          </div>
         </div>
-        <div className={(!isOpened ? styles.hide : styles.show)}>
-          <form onSubmit={this.onSubmitForm}>
-            <div className={styles.row}>
-              <label>Название: </label>
-              <input type="text" name="name" value={name} onChange={this.onChangeName} />
-            </div>
-            <div className={styles.row}>
-              <label>Описание: </label>
-              <textarea name="description" value={description} onChange={this.onChangeDescription} />
-            </div>
-            <div className={styles.row}>
-              <input type="submit" value="Добавить" />
-            </div>
-          </form>
-        </div>
-      </div>
+        <Error error={error} />
+      </>
     );
   }
 }

@@ -4,7 +4,6 @@
 
 .taskTable {
   border-collapse: collapse;
-  margin-left: 50px;
 }
 
 .taskTable th, .taskTable td {
