@@ -4,6 +4,7 @@ import Form from "components/Form";
 import ListState from "components/ListState";
 import styles from "./App.module.css";
 import Header from "components/Header";
+import Button from "@material-ui/core/Button";
 
 class App extends Component {
   constructor(props) {
@@ -26,8 +27,8 @@ class App extends Component {
       <div>
         <Header title="TODO list" />
         <div className="content">
-          <div className={styles.formButton}>
-            <button onClick={this.onShowFormClick}>{isOpened ? "Скрыть форму" : "Добавить задачу"}</button>
+          <div>
+            <Button variant="contained" onClick={this.onShowFormClick}>{isOpened ? "Скрыть форму" : "Добавить задачу"}</Button>
           </div>
           <Form isOpened={isOpened} />
           <ListState todo={todoCount} all={allCount} />

@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import styles from "./Form.module.css";
 import Error from "components/Error";
 
+import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button/Button";
+
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -12,10 +15,10 @@ class Form extends Component {
     };
   }
 
-  onChangeField = (e) => {
-    if (e.target.name === "name") {
+  onChangeField = name => e => {
+    if (name === "name") {
       this.setState({name: e.target.value});
-    } else if (e.target.name === "description") {
+    } else if (name === "description") {
       this.setState({description: e.target.value});
     }
   };
@@ -42,15 +45,25 @@ class Form extends Component {
           <div className={(!isOpened ? styles.hide : styles.show)}>
             <form onSubmit={this.onSubmitForm}>
               <div className={styles.row}>
-                <label>Название: </label>
-                <input type="text" name="name" value={name} onChange={this.onChangeField} />
+                <TextField
+                  label="Название"
+                  value={name}
+                  onChange={this.onChangeField('name')}
+                  margin="normal"
+                />
               </div>
               <div className={styles.row}>
-                <label>Описание: </label>
-                <textarea name="description" value={description} onChange={this.onChangeField} />
+                <TextField
+                  label="Описание"
+                  multiline
+                  rows="4"
+                  margin="normal"
+                  value={description}
+                  onChange={this.onChangeField('description')}
+                />
               </div>
               <div className={styles.row}>
-                <input type="submit" value="Добавить" />
+                <Button color="primary" variant="contained" type="submit">Добавить</Button>
               </div>
             </form>
           </div>
