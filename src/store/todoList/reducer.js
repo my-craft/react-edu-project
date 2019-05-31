@@ -83,11 +83,21 @@ const actions = {
   },
 
   [SET_SORT]: (state, payload) => {
+    const {sort} = payload;
+    if (!sort) {
+      return state;
+    }
 
+    return {...state, sort};
   },
 
   [SET_FILTERS]: (state, payload) => {
+    const {filters} = payload;
+    if (!filters) {
+      return state;
+    }
 
+    return {...state, filters};
   }
 };
 

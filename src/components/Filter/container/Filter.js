@@ -4,8 +4,8 @@ import Filter from "../component/Filter";
 
 const mapDispatchToProps = (dispatch) => (
   {
-    setSort: item => dispatch(setSort(item)),
-    setFilters: item => dispatch(setFilters(item))
+    setSort: sort => dispatch(setSort(sort)),
+    setFilters: filters => dispatch(setFilters(filters))
   }
 );
 

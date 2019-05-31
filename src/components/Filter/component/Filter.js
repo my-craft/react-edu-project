@@ -11,33 +11,50 @@ class Filter extends Component {
     }
   };
 
-  onSortChange = (e) => {
+  onChangeSort = (e) => {
     const sort = e.target.value;
 
-    this.props.addItem({sort});
+    this.props.setSort({sort});
 
     this.setState({
       sort
     });
   };
 
+  onChangeFilter = (e) => {
+    const {name, checked} = e.target;
+    this.setState((prevState, props) => {
+      const {filters} = prevState;
+
+      filters[name] = checked;
+
+      props.setFilters({filters});
+
+      return filters;
+    });
+  };
+
   render() {
+    const {sort, filters} = this.state;
+
     return (
       <div className={styles.filter}>
         <div className={styles.sort}>
           <label className={styles.selectLabel}>Сортировать задачи</label>
-          <select onChange={this.onSortChange}>
+          <select onChange={this.onChangeSort} value={sort}>
             <option value={SORT_DEFAULT}>По умолчанию</option>
             <option value={SORT_DATE_DESC}>Сначала новые</option>
-            <option value={SORT_DATE_DESC}>Сначала старые</option>
+            <option value={SORT_DATE_ASC}>Сначала старые</option>
           </select>
         </div>
         <span>Показать</span>
         <div>
-          <input type="checkbox" /><label>Сделанные</label>
+          <input name={FILTER_TODO} type="checkbox" onChange={this.onChangeFilter} value={FILTER_TODO}
+                 checked={filters[FILTER_TODO]} /><label>Не сделанные</label>
         </div>
         <div>
-          <input type="checkbox" /><label>Не сделанные</label>
+          <input name={FILTER_DONE} type="checkbox" onChange={this.onChangeFilter} value={FILTER_DONE}
+                 checked={filters[FILTER_DONE]} /><label>Сделанные</label>
         </div>
       </div>
     );
