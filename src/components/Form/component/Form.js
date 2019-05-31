@@ -12,12 +12,12 @@ class Form extends Component {
     };
   }
 
-  onChangeName = (e) => {
-    this.setState({name: e.target.value});
-  };
-
-  onChangeDescription = (e) => {
-    this.setState({description: e.target.value});
+  onChangeField = (e) => {
+    if (e.target.name === "name") {
+      this.setState({name: e.target.value});
+    } else if (e.target.name === "description") {
+      this.setState({description: e.target.value});
+    }
   };
 
   onSubmitForm = (e) => {
@@ -43,11 +43,11 @@ class Form extends Component {
             <form onSubmit={this.onSubmitForm}>
               <div className={styles.row}>
                 <label>Название: </label>
-                <input type="text" name="name" value={name} onChange={this.onChangeName} />
+                <input type="text" name="name" value={name} onChange={this.onChangeField} />
               </div>
               <div className={styles.row}>
                 <label>Описание: </label>
-                <textarea name="description" value={description} onChange={this.onChangeDescription} />
+                <textarea name="description" value={description} onChange={this.onChangeField} />
               </div>
               <div className={styles.row}>
                 <input type="submit" value="Добавить" />

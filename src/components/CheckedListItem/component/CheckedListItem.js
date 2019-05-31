@@ -16,13 +16,14 @@ class CheckedListItem extends Component {
 
   onChangeHandler = () => {
     this.setState((prevState, props) => {
-      const {item} = prevState;
-      item.done = !item.done;
-
-      props.setItemState(item);
-
-      return item;
-    });
+        return {
+          item: {...prevState.item, done: !prevState.item.done}
+        };
+      },
+      () => {
+        const {item} = this.state;
+        this.props.setItemState(item);
+      });
   };
 
   render() {

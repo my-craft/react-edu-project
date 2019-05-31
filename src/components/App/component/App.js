@@ -15,11 +15,7 @@ class App extends Component {
   }
 
   onShowFormClick = (e) => {
-    this.setState({isOpened: true});
-  };
-
-  onHideFormClick = (e) => {
-    this.setState({isOpened: false});
+    this.setState((prevState, props) => ({isOpened: !prevState.isOpened}));
   };
 
   render() {
@@ -31,8 +27,7 @@ class App extends Component {
         <Header title="TODO list" />
         <div className="content">
           <div className={styles.formButton}>
-            {isOpened ? <button onClick={this.onHideFormClick}>Скрыть форму</button> :
-              <button onClick={this.onShowFormClick}>Добавить задачу</button>}
+            <button onClick={this.onShowFormClick}>{isOpened ? "Скрыть форму" : "Добавить задачу"}</button>
           </div>
           <Form isOpened={isOpened} />
           <ListState todo={todoCount} all={allCount} />

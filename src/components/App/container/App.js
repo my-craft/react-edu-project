@@ -63,8 +63,8 @@ const mapStateToProps = (state) => {
 
   return {
     todoList: filteredList,
-    todoCount: todoCount,
-    allCount: allCount,
+    todoCount,
+    allCount,
     error: getError(state)
   };
 };

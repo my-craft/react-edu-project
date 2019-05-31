@@ -71,13 +71,11 @@ const actions = {
 
     const {todoList} = state;
 
-    todoList.map((item) => {
-      if (item.id === id) {
-        item.done = done;
-      }
-
-      return item;
+    const itemIndex = todoList.findIndex((item) => {
+      return (item.id === id);
     });
+
+    todoList[itemIndex].done = done;
 
     return {...state, todoList};
   },

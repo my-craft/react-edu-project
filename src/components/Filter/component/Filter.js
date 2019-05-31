@@ -14,24 +14,26 @@ class Filter extends Component {
   onChangeSort = (e) => {
     const sort = e.target.value;
 
-    this.props.setSort({sort});
-
     this.setState({
-      sort
-    });
+        sort
+      },
+      () => {
+        const {sort} = this.state;
+        this.props.setSort({sort});
+      });
   };
 
   onChangeFilter = (e) => {
     const {name, checked} = e.target;
     this.setState((prevState, props) => {
-      const {filters} = prevState;
-
-      filters[name] = checked;
-
-      props.setFilters({filters});
-
-      return filters;
-    });
+        const {filters} = prevState;
+        filters[name] = checked;
+        return filters;
+      },
+      () => {
+        const {filters} = this.state;
+        this.props.setFilters({filters});
+      });
   };
 
   render() {
