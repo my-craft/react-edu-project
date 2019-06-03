@@ -37,9 +37,13 @@ const sortListByParam = (param) => {
 };
 
 const mapStateToProps = (state) => {
-  const todoList = getTodoList(state);
+  const todoListObj = getTodoList(state);
 
-  /*const allCount = todoList.length;
+  const todoList = Object.keys(todoListObj).map(function (id) {
+    return {...todoListObj[id], id};
+  });
+
+  const allCount = todoList.length;
   const todoCount = todoList.filter(
     (item) => {
       return !item.done;
@@ -59,12 +63,12 @@ const mapStateToProps = (state) => {
 
   // сделанные задачи должны быть внизу таблицы
   // между собой задачи с разными статусами отсортированы по дате - сначала новые
-  filteredList.sort(sortListByParam(sort));*/
+  filteredList.sort(sortListByParam(sort));
 
   return {
-    todoList: todoList,
-    todoCount: 0,
-    allCount: 0,
+    todoList: filteredList,
+    todoCount,
+    allCount,
     error: getError(state)
   };
 };
