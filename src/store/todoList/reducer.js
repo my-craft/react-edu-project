@@ -53,7 +53,7 @@ const actions = {
 
     return {
       ...state,
-      todoList: {...state.todoList, nextId: newItem},
+      todoList: {...state.todoList, [nextId]: newItem},
       error: null,
       nextId: nextId + 1
     };
