@@ -9,6 +9,11 @@ const CheckedList = ({list}) => {
     return (<></>);
   }
 
+  const items = [];
+  for (const [id, listItem] of Object.entries(list)) {
+    items.push(<CheckedListItem key={id} item={listItem} />);
+  }
+
   return (
     <div className={styles.list}>
       <Filter />
@@ -20,7 +25,7 @@ const CheckedList = ({list}) => {
           <th>Описание</th>
           <th>Дата постановки</th>
         </tr>
-        {list.map((listItem) => <CheckedListItem key={listItem.id} item={listItem} />)}
+        {items}
         </tbody>
       </table>
     </div>

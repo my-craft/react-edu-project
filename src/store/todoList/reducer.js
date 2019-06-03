@@ -2,22 +2,20 @@ import {ADD_ITEM, SET_ITEM_STATE, SET_SORT, SET_FILTERS, SORT_DEFAULT, FILTER_TO
 import moment from "moment";
 
 const initialState = {
-  todoList: [
-    {
-      id: 1,
+  todoList: {
+    1: {
       name: "First task",
       description: "Some text",
       date: "2019-05-28 16:05",
       done: false
     },
-    {
-      id: 2,
+    2: {
       name: "Second task",
       description: "",
       date: "2019-05-28 17:20",
       done: false
     }
-  ],
+  },
   nextId: 3,
   error: null,
   sort: SORT_DEFAULT,
@@ -47,7 +45,6 @@ const actions = {
     const {nextId} = state;
 
     const newItem = {
-      id: nextId,
       name: payload.name,
       description: payload.description ? payload.description : "",
       date: moment().format("YYYY-MM-DD HH:mm"),
@@ -56,7 +53,7 @@ const actions = {
 
     return {
       ...state,
-      todoList: [...state.todoList, newItem],
+      todoList: {...state.todoList, nextId: newItem},
       error: null,
       nextId: nextId + 1
     };
@@ -71,11 +68,11 @@ const actions = {
 
     const {todoList} = state;
 
-    const itemIndex = todoList.findIndex((item) => {
-      return (item.id === id);
-    });
+    if (!todoList[id]) {
+      return state;
+    }
 
-    todoList[itemIndex].done = done;
+    todoList[id].done = done;
 
     return {...state, todoList};
   },
