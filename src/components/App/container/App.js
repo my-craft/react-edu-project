@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
 import App from "../component/App";
 import {getTodoList, getError, getSort, getFilters} from "store/todoList/selectors";
-import {SORT_DEFAULT, SORT_DATE_ASC, SORT_DATE_DESC, FILTER_TODO, FILTER_DONE} from "store/todoList/constant";
+import {SortTypes, FilterTypes} from "store/todoList/constant";
 
 const sortTypes = {
-  [SORT_DEFAULT]: (a, b) => {
+  [SortTypes.SORT_DEFAULT]: (a, b) => {
 
     if (!a.done && b.done) {
       return -1;
@@ -17,11 +17,11 @@ const sortTypes = {
     return b.date.localeCompare(a.date);
   },
 
-  [SORT_DATE_DESC]: (a, b) => {
+  [SortTypes.SORT_DATE_DESC]: (a, b) => {
     return b.date.localeCompare(a.date);
   },
 
-  [SORT_DATE_ASC]: (a, b) => {
+  [SortTypes.SORT_DATE_ASC]: (a, b) => {
     return !b.date.localeCompare(a.date);
   }
 };
@@ -53,9 +53,9 @@ const mapStateToProps = (state) => {
   const filters = getFilters(state);
   const filteredList = todoList.filter(
     (item) => {
-      return ((filters[FILTER_TODO] === filters[FILTER_DONE])
-        || (filters[FILTER_TODO] && !item.done)
-        || (filters[FILTER_DONE] && item.done));
+      return ((filters[FilterTypes.FILTER_TODO] === filters[FilterTypes.FILTER_DONE])
+        || (filters[FilterTypes.FILTER_TODO] && !item.done)
+        || (filters[FilterTypes.FILTER_DONE] && item.done));
     }
   );
 

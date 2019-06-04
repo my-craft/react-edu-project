@@ -1,4 +1,4 @@
-import {ADD_ITEM, SET_ITEM_STATE, SET_SORT, SET_FILTERS, SORT_DEFAULT, FILTER_TODO, FILTER_DONE} from "./constant";
+import {ADD_ITEM, SET_ITEM_STATE, SET_SORT, SET_FILTERS, SortTypes, FilterTypes} from "./constant";
 import moment from "moment";
 
 const initialState = {
@@ -18,10 +18,10 @@ const initialState = {
   },
   nextId: 3,
   error: null,
-  sort: SORT_DEFAULT,
+  sort: SortTypes.SORT_DEFAULT,
   filters: {
-    [FILTER_TODO]: false,
-    [FILTER_DONE]: false
+    [FilterTypes.FILTER_TODO]: false,
+    [FilterTypes.FILTER_DONE]: false
   }
 };
 

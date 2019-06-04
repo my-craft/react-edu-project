@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import {SORT_DEFAULT, SORT_DATE_ASC, SORT_DATE_DESC, FILTER_TODO, FILTER_DONE} from "store/todoList/constant";
+import {SortTypes, FilterTypes} from "store/todoList/constant";
 import styles from "./Filter.module.css";
 
 class Filter extends Component {
   state = {
-    sort: SORT_DEFAULT,
+    sort: SortTypes.SORT_DEFAULT,
     filters: {
-      [FILTER_TODO]: false,
-      [FILTER_DONE]: false
+      [FilterTypes.FILTER_TODO]: false,
+      [FilterTypes.FILTER_DONE]: false
     }
   };
 
@@ -44,19 +44,27 @@ class Filter extends Component {
         <div className={styles.sort}>
           <label className={styles.selectLabel}>Сортировать задачи</label>
           <select onChange={this.onChangeSort} value={sort}>
-            <option value={SORT_DEFAULT}>По умолчанию</option>
-            <option value={SORT_DATE_DESC}>Сначала новые</option>
-            <option value={SORT_DATE_ASC}>Сначала старые</option>
+            <option value={SortTypes.SORT_DEFAULT}>По умолчанию</option>
+            <option value={SortTypes.SORT_DATE_DESC}>Сначала новые</option>
+            <option value={SortTypes.SORT_DATE_ASC}>Сначала старые</option>
           </select>
         </div>
         <span>Показать</span>
         <div>
-          <input name={FILTER_TODO} type="checkbox" onChange={this.onChangeFilter} value={FILTER_TODO}
-                 checked={filters[FILTER_TODO]} /><label>Не сделанные</label>
+          <input name={FilterTypes.FILTER_TODO}
+                 type="checkbox"
+                 onChange={this.onChangeFilter}
+                 value={FilterTypes.FILTER_TODO}
+                 checked={filters[FilterTypes.FILTER_TODO]} />
+          <label>Не сделанные</label>
         </div>
         <div>
-          <input name={FILTER_DONE} type="checkbox" onChange={this.onChangeFilter} value={FILTER_DONE}
-                 checked={filters[FILTER_DONE]} /><label>Сделанные</label>
+          <input name={FilterTypes.FILTER_DONE}
+                 type="checkbox"
+                 onChange={this.onChangeFilter}
+                 value={FilterTypes.FILTER_DONE}
+                 checked={filters[FilterTypes.FILTER_DONE]} />
+          <label>Сделанные</label>
         </div>
       </div>
     );
